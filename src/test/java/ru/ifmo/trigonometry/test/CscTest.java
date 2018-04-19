@@ -1,8 +1,8 @@
-package ru.ifmo.trigonometry.stubs;
+package ru.ifmo.trigonometry.test;
 
 import static ru.ifmo.trigonometry.Sin.sin;
 
-public class Csc {
+public class CscTest {
     public static double csc(double x) {
         return 1/sin(x);
     }
