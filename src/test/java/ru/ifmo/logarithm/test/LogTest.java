@@ -9,8 +9,6 @@ import ru.ifmo.logarithm.Ln;
 
 import static org.junit.Assert.assertEquals;
 import static org.powermock.api.mockito.PowerMockito.when;
-import static org.powermock.configuration.ConfigurationType.PowerMock;
-import static ru.ifmo.logarithm.Ln.ln;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Ln.class)
