@@ -15,11 +15,17 @@ import static org.powermock.api.mockito.PowerMockito.when;
 public class LogTest {
 
     private static final double EPS = 1e-5;
-    @Test
-    public void logStubTest(){
+
+
+    public void stubLn(){
         PowerMockito.mockStatic(Ln.class);
 
         when(Ln.ln(0)).thenReturn(1.0);
+    }
+
+    @Test
+    public void logStubTest(){
+        stubLn();
         assertEquals(Ln.ln(0), 1.0, EPS);
     }
 }
