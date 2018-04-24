@@ -21,7 +21,8 @@ public class BigFunctionTest {
     }
     private void mockTrig(){
         PowerMockito.mockStatic(TrigBigFunction.class);
-        when(TrigBigFunction.calculate(0)).thenReturn(0.0);
+        when(TrigBigFunction.calculate(1)).thenReturn(0.21811040);
+        when(TrigBigFunction.calculate(0)).thenThrow(IllegalArgumentException.class);
     }
 
     @Test
@@ -37,10 +38,17 @@ public class BigFunctionTest {
     @Test
     public void testRouteForTrig(){
         mockTrig();
-        double res = BigFunction.calc(0);
+        double res = BigFunction.calc(-1);
         PowerMockito.verifyStatic(TrigBigFunction.class);
-        TrigBigFunction.calculate(0);
+        TrigBigFunction.calculate(-1);
         PowerMockito.verifyStatic(LogBigFunction.class, times(0));
-        LogBigFunction.calculate(0);
+        LogBigFunction.calculate(-1);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNull() {
+        mockTrig();
+        double res = BigFunction.calc(0);
+    }
+
 }
