@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
 import org.powermock.api.mockito.PowerMockito;
@@ -28,11 +27,9 @@ public class BigFunctionTest {
     }
     private void mockTrig(){
         PowerMockito.mockStatic(TrigBigFunction.class);
-        when(TrigBigFunction.calculate(0)).thenThrow(IllegalArgumentException.class);
         when(TrigBigFunction.calculate(-8.027)).thenReturn(-2.00487);
         when(TrigBigFunction.calculate(-3.627108)).thenReturn(0.352202);
         when(TrigBigFunction.calculate(-1.743824)).thenReturn(-2.00487);
-        when(TrigBigFunction.calculate(-Math.PI)).thenThrow(IllegalArgumentException.class);
 
     }
 
@@ -90,13 +87,6 @@ public class BigFunctionTest {
         TrigBigFunction.calculate(-1);
         PowerMockito.verifyStatic(LogBigFunction.class, times(0));
         LogBigFunction.calculate(-1);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testWithNull() {
-        mockTrig();
-        double res = BigFunction.calc(0);
-        res = BigFunction.calc(-Math.PI);
     }
 
 }

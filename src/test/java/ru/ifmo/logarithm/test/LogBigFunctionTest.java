@@ -5,8 +5,6 @@ import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import ru.ifmo.BigFunction;
-import ru.ifmo.logarithm.Ln;
 import ru.ifmo.logarithm.Log;
 import ru.ifmo.logarithm.LogBigFunction;
 

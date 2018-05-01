@@ -1,7 +1,5 @@
 package ru.ifmo.trigonometry;
 
-import com.sun.xml.internal.ws.api.addressing.AddressingVersion;
-
 import static ru.ifmo.trigonometry.Cos.cos;
 import static ru.ifmo.trigonometry.Sin.sin;
 
