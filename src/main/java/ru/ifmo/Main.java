@@ -10,10 +10,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Writer writer = new Writer("main.csv");
 
         while(true) {
             printMenu();
-
             int option = sc.nextInt();
             Integer fn = option;
 
@@ -29,11 +29,13 @@ public class Main {
             for (double x = min; x <= max; x += step) {
                 y = calculate(fn, x);
                 if (y != null) {
+                    writer.write(x, y);
                     System.out.println("x = " + x + "\ty = " + y);
                 }
             }
-
+            writer.close();
         }
+
     }
 
     static private void printMenu() {

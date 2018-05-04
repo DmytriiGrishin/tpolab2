@@ -16,6 +16,7 @@ import ru.ifmo.trigonometry.TrigBigFunction;
 @PrepareForTest({LogBigFunction.class, TrigBigFunction.class})
 public class BigFunctionTest {
 
+    Writer writer;
     private static final double EPS = 1e-5;
 
     private void mockLog(){
@@ -36,37 +37,56 @@ public class BigFunctionTest {
     public void mainTestScenario(){
         double result = BigFunction.calc(-8.027);
         assertEquals("-8.027",-2.00487, result, EPS);
+        writer.write(-8.027, result);
         result = BigFunction.calc(-3.627108);
         assertEquals("-3.627108", 0.352202, result, EPS);
+        writer.write(-3.627108, result);
         result = BigFunction.calc(-1.743824);
         assertEquals("-1.743824", -2.00487, result, EPS);
-        
+        writer.write(-1.743824, result);
+
 
         result = BigFunction.calc(0.66174);
         assertEquals("0.66174", 0.869052, result, EPS);
+        writer.write(0.66174, result);
         result = BigFunction.calc(0.5);
         assertEquals("0.5", 0.929393, result, EPS);
+        writer.write(0.5, result);
         result = BigFunction.calc(1.2);
         assertEquals("1.2", 1.14119, result, EPS);
+        writer.write(1.2, result);
     }
 
     @Test
     public void testWithAllMocked(){
+        writer = new Writer("BigFuncAllMocked.csv");
         mockLog();
         mockTrig();
         mainTestScenario();
+        writer.close();
     }
 
     @Test
     public void testWithLogMocked(){
+        writer = new Writer("BigFuncLogMocked.csv");
         mockLog();
         mainTestScenario();
+        writer.close();
     }
 
     @Test
     public void testWithTrigMocked(){
+        writer = new Writer("BigFuncTrigMocked.csv");
         mockTrig();
         mainTestScenario();
+        writer.close();
+    }
+
+    @Test
+    public void testWithNoneMocked(){
+        writer = new Writer("BigFuncNoneMocked.csv");
+        mainTestScenario();
+        writer.close();
     }
 
     @Test
@@ -87,6 +107,41 @@ public class BigFunctionTest {
         TrigBigFunction.calculate(-1);
         PowerMockito.verifyStatic(LogBigFunction.class, times(0));
         LogBigFunction.calculate(-1);
+    }
+
+
+    @Test
+    public void graphLogMocked(){
+        mockLog();
+        writer = new Writer("graphLogMock.csv");
+        for (double x = -6; x < 4; x+=0.01){
+            double res = BigFunction.calc(x);
+            writer.write(x, res);
+        }
+        writer.close();
+    }
+    @Test
+    public void graphTrigMocked(){
+        mockTrig();
+        writer = new Writer("graphTrigMock.csv");
+        for (double x = -6; x < 4; x+=0.01){
+            double res = BigFunction.calc(x);
+            writer.write(x, res);
+        }
+        writer.close();
+    }
+
+
+    @Test
+    public void graphAllMocked(){
+        mockLog();
+        mockTrig();
+        writer = new Writer("graphAllMock.csv");
+        for (double x = -6; x < 4; x+=0.01){
+            double res = BigFunction.calc(x);
+            writer.write(x, res);
+        }
+        writer.close();
     }
 
 }
