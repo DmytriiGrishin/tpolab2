@@ -10,13 +10,17 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import ru.ifmo.logarithm.LogBigFunction;
+import ru.ifmo.trigonometry.Cos;
+import ru.ifmo.trigonometry.Csc;
+import ru.ifmo.trigonometry.Sin;
 import ru.ifmo.trigonometry.TrigBigFunction;
+import ru.ifmo.trigonometry.test.TrigStubs;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({LogBigFunction.class, TrigBigFunction.class})
+@PrepareForTest({LogBigFunction.class, TrigBigFunction.class, Sin.class, Cos.class, Csc.class})
 public class BigFunctionTest {
 
-    Writer writer;
+    private Writer writer;
     private static final double EPS = 1e-5;
 
     private void mockLog(){
@@ -111,23 +115,66 @@ public class BigFunctionTest {
 
 
     @Test
-    public void graphLogMocked(){
-        mockLog();
-        writer = new Writer("graphLogMock.csv");
-        for (double x = -6; x < 4; x+=0.01){
+    public void graphSinCosCscMocked(){
+        TrigStubs.mockSin();
+        TrigStubs.mockCos();
+        TrigStubs.mockCsc();
+
+        writer = new Writer("graphSinCosCscMocked.csv");
+        for (double x = -6; x < 4; x+=0.5){
             double res = BigFunction.calc(x);
             writer.write(x, res);
         }
+        double result = BigFunction.calc(-8.027);
+        assertEquals("-8.027",-2.00487, result, EPS);
+        writer.write(-8.027, result);
+        result = BigFunction.calc(-3.627108);
+        assertEquals("-3.627108", 0.352202, result, EPS);
+        writer.write(-3.627108, result);
+        result = BigFunction.calc(-1.743824);
+        assertEquals("-1.743824", -2.00487, result, EPS);
+        writer.write(-1.743824, result);
+
+
+        result = BigFunction.calc(0.66174);
+        assertEquals("0.66174", 0.869052, result, EPS);
+        writer.write(0.66174, result);
+        result = BigFunction.calc(0.5);
+        assertEquals("0.5", 0.929393, result, EPS);
+        writer.write(0.5, result);
+        result = BigFunction.calc(1.2);
+        assertEquals("1.2", 1.14119, result, EPS);
+        writer.write(1.2, result);
         writer.close();
     }
     @Test
     public void graphTrigMocked(){
         mockTrig();
         writer = new Writer("graphTrigMock.csv");
-        for (double x = -6; x < 4; x+=0.01){
+        for (double x = -6; x < 4; x+=0.5){
             double res = BigFunction.calc(x);
             writer.write(x, res);
         }
+        double result = BigFunction.calc(-8.027);
+        assertEquals("-8.027",-2.00487, result, EPS);
+        writer.write(-8.027, result);
+        result = BigFunction.calc(-3.627108);
+        assertEquals("-3.627108", 0.352202, result, EPS);
+        writer.write(-3.627108, result);
+        result = BigFunction.calc(-1.743824);
+        assertEquals("-1.743824", -2.00487, result, EPS);
+        writer.write(-1.743824, result);
+
+
+        result = BigFunction.calc(0.66174);
+        assertEquals("0.66174", 0.869052, result, EPS);
+        writer.write(0.66174, result);
+        result = BigFunction.calc(0.5);
+        assertEquals("0.5", 0.929393, result, EPS);
+        writer.write(0.5, result);
+        result = BigFunction.calc(1.2);
+        assertEquals("1.2", 1.14119, result, EPS);
+        writer.write(1.2, result);
         writer.close();
     }
 
@@ -137,10 +184,30 @@ public class BigFunctionTest {
         mockLog();
         mockTrig();
         writer = new Writer("graphAllMock.csv");
-        for (double x = -6; x < 4; x+=0.01){
+        for (double x = -6; x < 4; x+=0.5){
             double res = BigFunction.calc(x);
             writer.write(x, res);
         }
+        double result = BigFunction.calc(-8.027);
+        assertEquals("-8.027",-2.00487, result, EPS);
+        writer.write(-8.027, result);
+        result = BigFunction.calc(-3.627108);
+        assertEquals("-3.627108", 0.352202, result, EPS);
+        writer.write(-3.627108, result);
+        result = BigFunction.calc(-1.743824);
+        assertEquals("-1.743824", -2.00487, result, EPS);
+        writer.write(-1.743824, result);
+
+
+        result = BigFunction.calc(0.66174);
+        assertEquals("0.66174", 0.869052, result, EPS);
+        writer.write(0.66174, result);
+        result = BigFunction.calc(0.5);
+        assertEquals("0.5", 0.929393, result, EPS);
+        writer.write(0.5, result);
+        result = BigFunction.calc(1.2);
+        assertEquals("1.2", 1.14119, result, EPS);
+        writer.write(1.2, result);
         writer.close();
     }
 
