@@ -6,7 +6,7 @@ import static ru.ifmo.trigonometry.Csc.csc;
 import static ru.ifmo.trigonometry.Sin.sin;
 import static ru.ifmo.trigonometry.Tan.tan;
 
-public class TrigBigFunction {
+public abstract class TrigBigFunction {
     public static double calculate(double x){
         return (((Math.pow((sin(x) / tan(x)),2)) * sin(x)) + tan(x)) * ((cot(x) - cos(x)) * csc(x));
     }

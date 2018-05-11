@@ -2,7 +2,7 @@ package ru.ifmo.logarithm;
 
 import static ru.ifmo.logarithm.Log.log;
 
-public class LogBigFunction {
+public abstract class LogBigFunction {
 
     public static double calculate(double x){
         return (

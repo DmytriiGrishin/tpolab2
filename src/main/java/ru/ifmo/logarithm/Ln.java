@@ -2,7 +2,7 @@ package ru.ifmo.logarithm;
 
 import static java.lang.Math.abs;
 
-public class Ln {
+public abstract class Ln {
     private static final double eps = 0.000001;
 
     private static final double LN_OF_10 = 2.302585092994045684;

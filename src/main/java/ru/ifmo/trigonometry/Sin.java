@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import static java.lang.Math.pow;
 
-public class Sin {
+public abstract class Sin {
     private static final Double EPS = 10e-10;
 
     private static double factorial(int x) {
